@@ -15,9 +15,10 @@ while not game_end:
 
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                if dino.jump !=1:
+                if not dino.jump:
                     dino.jump = 1
-                    dino.speed[1] = dino.jump_speed
+                    dino.speed[1] = -dino.jump_speed
+                    print(111)
 
     display.fill((0, 50, 255))
     dino.move()
