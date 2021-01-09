@@ -2,8 +2,10 @@ import pygame
 
 
 class Dino():
-    def __init__(self, width, height):
-        self.image = pygame.image.load("dino.png")
+    def __init__ (self, width, height):
+        self.image1 = pygame.image.load("dino1.png")
+        self.image2 = pygame.image.load("dino2.png")
+        self.image = self.image1
         self.size = (40, 80)
         self.speed = [0, 1]
         self.width = width
@@ -29,3 +31,7 @@ class Dino():
         if self.pos[1]+self.size[1]<self.height-self.jump_height:
             self.speed[1] = 1
             print (3)
+        if self.jump:
+            self.image = self.image2
+        else:
+            self.image = self.image1
