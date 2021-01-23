@@ -15,6 +15,8 @@ class Dino():
         self.jump_height = 120
         self.jump_speed = 1
         self.jump_min_speed = 0.001
+        self.score = 0
+        self.die = False
 
     def draw(self, display):
         display.blit(self.image, self.image.get_rect(topleft=self.pos))
@@ -35,3 +37,5 @@ class Dino():
             self.image = self.image2
         else:
             self.image = self.image1
+        if self.die:
+            print ("dino.die")

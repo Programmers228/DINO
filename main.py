@@ -11,16 +11,16 @@ pygame.display.set_caption("DINO")
 clock = pygame.time.Clock()
 game_end = False
 dino = Dino(width, height)
-cactus = [Kaktusik(width,height,(width-20,height-60))]
+cactus = [Kaktusik(width,height,(width-20,height-60), dino)]
 def spawn():
-    cactus.append(Kaktusik(width,height,(cactus[-1].pos[0]+random.randint(20,30),height-60)))
+    cactus.append(Kaktusik(width,height,(cactus[-1].pos[0]+random.randint(300,340),height-60), dino))
 while not game_end:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_end = True
 
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RETURN:
+            if event.key == pygame.K_SPACE:
                 if not dino.jump:
                     dino.jump = 1
                     dino.speed[1] = -dino.jump_speed
@@ -29,8 +29,16 @@ while not game_end:
     display.fill((0, 50, 255))
     dino.move()
     dino.draw(display)
+    a=[]
     for i in cactus:
         i.draw(display)
+        i.move()
+        if not (i.pos[0] < 0 or i.pos[0] > width):
+            a.append(i)
+    cactus = a
+    if dino.die:
+        game_end = True
+    spawn()
     pygame.display.update()
     clock.tick(340)
 pygame.quit()
