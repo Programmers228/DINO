@@ -10,7 +10,7 @@ class Dino():
         self.speed = [0, 1]
         self.width = width
         self.height = height
-        self.pos = [0, height - self.size[1]]
+        self.pos = [40  , height - self.size[1]]
         self.jump = 0
         self.jump_height = 120
         self.jump_speed = 1

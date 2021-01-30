@@ -12,6 +12,11 @@ clock = pygame.time.Clock()
 game_end = False
 dino = Dino(width, height)
 cactus = [Kaktusik(width,height,(width-20,height-60), dino)]
+font = pygame.font.Font('ALGER.TTF', 45)
+pause = False
+pause_image = pygame.image.load('PAUSED.png ')
+
+
 def spawn():
     cactus.append(Kaktusik(width,height,(cactus[-1].pos[0]+random.randint(300,340),height-60), dino))
 while not game_end:
@@ -29,6 +34,10 @@ while not game_end:
     display.fill((0, 50, 255))
     dino.move()
     dino.draw(display)
+    text = font.render(str(dino.score), True, (255,255,255))
+    textRect = text.get_rect(topleft = (5, 5))
+    display.blit(text, textRect)
+
     a=[]
     for i in cactus:
         i.draw(display)
