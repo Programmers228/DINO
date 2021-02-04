@@ -1,8 +1,8 @@
 import pygame
-
+image = pygame.image.load("kaktusik.png")
 class Kaktusik():
     def __init__(self, width, height, pos, dino):
-        self.image = pygame.image.load("kaktusik.png")
+        self.image = image
         self.size = (20, 60)
         self.speed = [-1, 0]
         self.width = width
