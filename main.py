@@ -30,24 +30,34 @@ while not game_end:
                     dino.jump = 1
                     dino.speed[1] = -dino.jump_speed
                     print(111)
+            if event.key == pygame.K_RETURN:
+                pause = True
+        elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_RETURN:
+                pause = False
 
     display.fill((0, 50, 255))
-    dino.move()
+    if not pause:
+        dino.move()
     dino.draw(display)
     text = font.render(str(dino.score), True, (255,255,255))
-    textRect = text.get_rect(topleft = (5, 5))
+    textRect = text.get_rect(topright = (width-10, 5))
     display.blit(text, textRect)
 
     a=[]
     for i in cactus:
         i.draw(display)
-        i.move()
+        if not pause:
+            i.move()
         if not (i.pos[0] < 0 or i.pos[0] > width):
             a.append(i)
     cactus = a
     if dino.die:
         game_end = True
-    spawn()
+    if not pause:
+        spawn()
+    if pause:
+        display.blit(pause_image,pause_image.get_rect(topleft=(width/2-144,height/2-39)))
     pygame.display.update()
     clock.tick(340)
 pygame.quit()
