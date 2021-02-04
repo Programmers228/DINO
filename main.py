@@ -31,10 +31,8 @@ while not game_end:
                     dino.speed[1] = -dino.jump_speed
                     print(111)
             if event.key == pygame.K_RETURN:
-                pause = True
-        elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_RETURN:
-                pause = False
+                pause = not pause
+
 
     display.fill((0, 50, 255))
     if not pause:
