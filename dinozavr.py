@@ -1,6 +1,5 @@
 import pygame
 
-
 class Dino():
     def __init__ (self, width, height):
         self.image1 = pygame.image.load("dino1.png")

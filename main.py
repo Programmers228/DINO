@@ -4,6 +4,10 @@ from dinozavr import *
 from Kaktusik import *
 
 pygame.init()
+
+music = pygame.mixer.music.load("Музон.mp3")
+pygame.mixer.music.play(-1)
+
 width = 640
 height = 480
 display = pygame.display.set_mode((width, height))
