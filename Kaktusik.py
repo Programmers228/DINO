@@ -4,7 +4,6 @@ image = pygame.image.load("kaktusik.png")
 
 class Kaktusik():
     def __init__(self, width, height, pos, dino, cheat):
-        self.image = image
         self.size = (20, 60)
         self.speed = [-1, 0]
         self.width = width
@@ -15,7 +14,7 @@ class Kaktusik():
         self.cheat = cheat
 
     def draw(self, display):
-        display.blit(self.image,self.image.get_rect(topleft=self.pos))
+        display.blit(image,image.get_rect(topleft=self.pos))
 
     def move(self):
         self.pos[0] += self.speed[0]
