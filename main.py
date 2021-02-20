@@ -2,22 +2,23 @@ import random
 import os
 import sys
 import pickle
+import pygame
 
 from Wrench import *
-from dinozavr import *
-from Kaktusik import *
+from resurs.dinozavr import *
+from resurs.Kaktusik import *
 
 pygame.init()
 cheat = False
-if "Hacker228.txt" in os.listdir(sys.path[0]):
+if "Hacker228.txt" in os.listdir(os.path.join(sys.path[0],"resurs")):
     cheat = True
 
 try:
-    with open("data.dat", "rb") as file:
+    with open("resurs/data.dat", "rb") as file:
         high_score = pickle.load(file)
 except:
     high_score = 0
-music = pygame.mixer.music.load("Музон.mp3")
+music = pygame.mixer.music.load("resurs/Музон.mp3")
 pygame.mixer.music.play(-1)
 volume = 0.5
 width = 640
@@ -30,10 +31,10 @@ game_end = False
 dino = Dino(width, height)
 cactus = [Kaktusik(width, height, (width - 20, height - 60), dino, cheat)]
 randomizer = random.randint(300, 340)
-font = pygame.font.Font('ALGER.TTF', 45)
+font = pygame.font.Font('resurs/ALGER.TTF', 45)
 pause = False
-pause_image = pygame.image.load('PAUSED.png')
-gameover_image = pygame.image.load('GAME OVER.png')
+pause_image = pygame.image.load('resurs/PAUSED.png')
+gameover_image = pygame.image.load('resurs/GAME OVER.png')
 
 
 def spawn():
@@ -71,7 +72,7 @@ while not game_end:
     dino.draw(display)
     if dino.score > high_score:
         high_score = dino.score
-        with open("data.dat", "wb") as file:
+        with open("resurs/data.dat", "wb") as file:
             pickle.dump(high_score, file)
 
     text = font.render(str(dino.score), True, (255, 255, 255))
