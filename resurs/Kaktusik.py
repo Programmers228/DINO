@@ -1,6 +1,6 @@
 import pygame
 
-image = pygame.image.load("kaktusik.png")
+image = pygame.image.load("resurs/kaktusik.png")
 
 class Kaktusik():
     def __init__(self, width, height, pos, dino, cheat):
