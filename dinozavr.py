@@ -2,8 +2,8 @@ import pygame
 
 class Dino():
     def __init__ (self, width, height):
-        self.image1 = pygame.image.load("resurs/dino1.png")
-        self.image2 = pygame.image.load("resurs/dino2.png")
+        self.image1 = pygame.image.load("dino1.png")
+        self.image2 = pygame.image.load("dino2.png")
         self.image = self.image1
         self.size = (40, 80)
         self.speed = [0, 1]
