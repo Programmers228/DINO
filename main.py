@@ -1,13 +1,17 @@
+#импорт модулей
 import random
 import os
 import sys
 import pickle
 
+#импорт с файлов
 from Wrench import *
 from dinozavr import *
 from Kaktusik import *
 
 pygame.init()
+
+#читы
 cheat = False
 if "Hacker228.txt" in os.listdir(sys.path[0]):
     cheat = True
@@ -17,12 +21,17 @@ try:
         high_score = pickle.load(file)
 except:
     high_score = 0
+
+#музон
 music = pygame.mixer.music.load("Музон.mp3")
 pygame.mixer.music.play(-1)
+
+#===================Настройки===================
 volume = 0.5
 width = 640
 height = 480
 FPS = 340
+
 display = pygame.display.set_mode((width, height))
 pygame.display.set_caption("DINO")
 clock = pygame.time.Clock()
@@ -30,7 +39,10 @@ game_end = False
 dino = Dino(width, height)
 cactus = [Kaktusik(width, height, (width - 20, height - 60), dino, cheat)]
 randomizer = random.randint(300, 340)
+
+#шрифт
 font = pygame.font.Font('ALGER.TTF', 45)
+#пауза
 pause = False
 pause_image = pygame.image.load('PAUSED.png')
 gameover_image = pygame.image.load('GAME OVER.png')
@@ -43,11 +55,12 @@ def spawn():
         randomizer = random.randint(300, 340)
 
 
+#===================Главний цикл===================
 while not game_end:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_end = True
-
+    #===================Клавишы===================
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and not pause and not dino.die:
                 if not dino.jump:
@@ -74,13 +87,21 @@ while not game_end:
         with open("data.dat", "wb") as file:
             pickle.dump(high_score, file)
 
+#===================Текст===================
+#   score
     text = font.render(str(dino.score), True, (255, 255, 255))
     textRect = text.get_rect(topright=(width - 10, 5))
     display.blit(text, textRect)
 
+#   hi score
     text2 = font.render("HI " + str(high_score), True, (255, 255, 255))
     textRect2 = text2.get_rect(topright=(width - 10, 45))
     display.blit(text2, textRect2)
+
+#   уровень громкости
+    text3 = font.render("vol " + str(cround(volume, 100, "*")) + "%", True, (255, 255, 255))
+    textRect3 = text3.get_rect(center=(width/2, 45))
+    display.blit(text3, textRect3)
 
     a = []
     for i in cactus:

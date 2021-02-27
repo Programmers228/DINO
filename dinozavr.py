@@ -1,7 +1,9 @@
+#импорт модулей
 import pygame
 
 class Dino():
     def __init__ (self, width, height):
+#    ===================Настройки===================
         self.image1 = pygame.image.load("dino1.png")
         self.image2 = pygame.image.load("dino2.png")
         self.image = self.image1
@@ -17,6 +19,7 @@ class Dino():
         self.score = 0
         self.die = False
 
+# функцыя "draw"
     def draw(self, display):
         display.blit(self.image, self.image.get_rect(topleft=self.pos))
 
